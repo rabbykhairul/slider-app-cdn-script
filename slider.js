@@ -1,5 +1,5 @@
 /**
- * VERSION: 0.0.1
+ * VERSION: 0.0.2
  */
 
 !(function (n, t) {
@@ -921,13 +921,20 @@
 });
 
 const initializeSliders = async () => {
+  const additionalCSS = `
+  .flowappz--container {
+    display: flex;
+    overflow: hidden;
+  }
+  `;
+
   const addPackageCss = async () => {
     const res = await fetch(`https://cdn.jsdelivr.net/npm/keen-slider@latest/keen-slider.min.css`);
 
     if (res.ok) {
       const cssString = await res.text();
       const style = document.createElement("style");
-      style.innerHTML = `${cssString}`;
+      style.innerHTML = `${cssString} ${additionalCSS}`;
 
       document.getElementsByTagName("head")[0].appendChild(style);
     }
